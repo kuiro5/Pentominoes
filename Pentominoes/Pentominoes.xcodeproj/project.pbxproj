@@ -395,6 +395,7 @@
 				7BDA7AA617DFB8880006198C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -7,12 +7,14 @@
 //
 
 #import "jjkViewController.h"
-#define yOffset 10
+#define yOffset 110
 #define xOffset 10
 
 @interface jjkViewController ()
+- (IBAction)solveButtonPressed:(id)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *boardImageView;
 @property (nonatomic, strong) NSArray *puzzlePieceArray;
+@property NSInteger currentBoardSelected;
 @end
 
 @implementation jjkViewController
@@ -23,6 +25,50 @@
     return dict;
 }
 
+-(void)displayPuzzlePieces
+{
+    self.puzzlePieceArray = [self initializePuzzlePieces];
+    
+    CGPoint startingPoint = self.boardImageView.frame.origin;
+    startingPoint.y += self.boardImageView.frame.size.height;
+    startingPoint.y = startingPoint.y + yOffset/2;
+    startingPoint.x = startingPoint.x - 4*xOffset;
+    
+    CGPoint currentPoint = startingPoint;
+    
+    NSInteger screenWidth = [UIScreen mainScreen].bounds.size.width;
+    //NSInteger screenHeight = [UIScreen mainScreen].bounds.size.height;
+    
+    
+    
+    
+    
+    for(UIImageView *puzzlePiece in self.puzzlePieceArray)
+    {
+        if(currentPoint.x + puzzlePiece.image.size.width >= screenWidth)
+        {
+            currentPoint.x = startingPoint.x;
+            currentPoint.y += yOffset;
+            
+            puzzlePiece.frame = CGRectMake(currentPoint.x, currentPoint.y, (puzzlePiece.image.size.width)/2, (puzzlePiece.image.size.height)/2);
+            
+            currentPoint.x += puzzlePiece.image.size.width/2 + xOffset;
+            
+            
+        }
+        else
+        {
+            puzzlePiece.frame = CGRectMake(currentPoint.x, currentPoint.y, puzzlePiece.image.size.width/2, puzzlePiece.image.size.height/2);
+            currentPoint.x += puzzlePiece.image.size.width/2 + xOffset;
+            
+            
+        }
+        
+        [self.view addSubview:puzzlePiece];
+        
+    }
+
+}
 
 - (void)viewDidLoad
 {
@@ -34,44 +80,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    self.puzzlePieceArray = [self displayPuzzlePieces];
-    
-    CGPoint startingPoint = self.boardImageView.frame.origin;
-    startingPoint.y += self.boardImageView.frame.size.height;
-    startingPoint.y = startingPoint.y + 5*yOffset;
-    startingPoint.x = startingPoint.x - 3*xOffset;
-    
-    CGPoint currentPoint = startingPoint;
-    
-    NSInteger screenWidth = [UIScreen mainScreen].bounds.size.width;
-    NSInteger screenHeight = [UIScreen mainScreen].bounds.size.height;
-    
-    NSInteger maximumHeight;
-    
-    
-    
-    for(UIImageView *puzzlePiece in self.puzzlePieceArray)
-    {
-        if(currentPoint.x + puzzlePiece.image.size.width >= screenWidth)
-        {
-            currentPoint.x = startingPoint.x;
-            currentPoint.y += puzzlePiece.image.size.height + yOffset;
-            
-            puzzlePiece.frame = CGRectMake(currentPoint.x, currentPoint.y, (puzzlePiece.image.size.width)/2, (puzzlePiece.image.size.height)/2);
-            
-            currentPoint.x += puzzlePiece.image.size.width/2 + xOffset;
-            
-     
-        }
-        else
-        {
-            puzzlePiece.frame = CGRectMake(currentPoint.x, currentPoint.y, puzzlePiece.image.size.width/2, puzzlePiece.image.size.height/2);
-            currentPoint.x += puzzlePiece.image.size.width/2 + xOffset;
-            
-     
-        }
-        
-    }
+    [self displayPuzzlePieces];
 }
 
 - (void)didReceiveMemoryWarning
@@ -80,7 +89,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(NSArray *)displayPuzzlePieces
+-(NSArray *)initializePuzzlePieces
 {
     NSArray *initialPuzzlePieceArray = [NSArray arrayWithObjects:@"tileF.png",@"tileI.png",@"tileL.png",@"tileN.png",@"tileP.png",@"tileT.png",@"tileU.png",@"tileV.png",@"tileW.png",@"tileX.png",@"tileY.png",@"tileZ.png", nil];
     
@@ -114,6 +123,28 @@
     
     self.boardImageView.image = [UIImage imageNamed:boardImageSelected];
     
+    self.currentBoardSelected = [sender tag];
+    
 }
 
+- (IBAction)solveButtonPressed:(id)sender
+{
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSString *solutionFile = [bundle pathForResource:@"Solutions" ofType:@".plist"];
+    
+    NSArray *solutionsArray = [NSArray arrayWithContentsOfFile:solutionFile];
+    
+    NSNumber *boardSelected = [NSNumber numberWithInt:(_currentBoardSelected -1 );
+    
+    if(self.currentBoardSelected != 0)
+    {
+        NSDictionary *boardDictioanry = [solutionsArray objectAtIndex:(self.currentBoardSelected - 1)];
+        for(NSString *puzzlePieces in puzzlePieceArray)
+        {
+            NSString *puzzleKey = [puzzlePieces substringWithRange:NSMakeRange(4,4)];
+            NSDictionary *puzzlePieceDictioanry = boardDictionary objectAtKey:@"";
+        }
+    }
+                               
+}
 @end

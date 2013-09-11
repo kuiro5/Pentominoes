@@ -134,6 +134,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="solveButtonPressed:" destination="2" eventType="touchUpInside" id="McJ-Cu-E6K"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
@@ -189,6 +192,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/jjkViewController.h"/>
             <relationships>
                 <relationship kind="action" name="boardButtonPressed:"/>
+                <relationship kind="action" name="solveButtonPressed:"/>
                 <relationship kind="outlet" name="boardImageView" candidateClass="UIImageView"/>
             </relationships>
         </class>
