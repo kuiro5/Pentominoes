@@ -14,8 +14,8 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="Board0.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ijq-CR-cGv">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="CK1-00-eYf"/>
-                                    <constraint firstAttribute="height" constant="320" id="Qc7-CX-bOJ"/>
+                                    <constraint firstAttribute="width" constant="420" id="C99-pO-no1"/>
+                                    <constraint firstAttribute="height" constant="420" id="NzA-Bo-fwb"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vlG-lS-LAQ">
@@ -124,6 +124,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="resetButtonPressed:" destination="2" eventType="touchUpInside" id="xWn-Sx-0Y8"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCS-Gg-sAg">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -142,23 +145,23 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vlG-lS-LAQ" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="4fO-eb-wp3"/>
-                            <constraint firstItem="VkK-GQ-BPU" firstAttribute="trailing" secondItem="vlG-lS-LAQ" secondAttribute="trailing" type="default" id="AFP-sq-fM5"/>
+                            <constraint firstItem="Ijq-CR-cGv" firstAttribute="leading" secondItem="VkK-GQ-BPU" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="8Q6-A1-yRq"/>
                             <constraint firstItem="fCS-Gg-sAg" firstAttribute="baseline" secondItem="ONG-Ri-men" secondAttribute="baseline" type="default" id="AXF-O1-2vT"/>
                             <constraint firstAttribute="trailing" secondItem="HwZ-IF-84m" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="DNa-4z-UN6"/>
-                            <constraint firstItem="Ijq-CR-cGv" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="198" id="Ffy-kS-vok"/>
+                            <constraint firstItem="Ijq-CR-cGv" firstAttribute="leading" secondItem="vlG-lS-LAQ" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="FDK-gh-wYZ"/>
+                            <constraint firstItem="Fj6-Af-oVa" firstAttribute="top" secondItem="5" secondAttribute="top" constant="281" id="HBz-iw-jLo"/>
                             <constraint firstItem="VkK-GQ-BPU" firstAttribute="top" secondItem="5" secondAttribute="top" constant="268" id="Igm-Lq-laI"/>
+                            <constraint firstItem="fEY-Ud-3eM" firstAttribute="top" secondItem="5" secondAttribute="top" constant="396" id="LOk-iV-wvO"/>
                             <constraint firstItem="gLP-gI-GOW" firstAttribute="leading" secondItem="Fj6-Af-oVa" secondAttribute="leading" type="default" id="Ngu-Bd-IqD"/>
                             <constraint firstItem="vlG-lS-LAQ" firstAttribute="top" secondItem="5" secondAttribute="top" constant="150" id="O0m-lx-TaY"/>
                             <constraint firstItem="ONG-Ri-men" firstAttribute="centerX" secondItem="fEY-Ud-3eM" secondAttribute="centerX" type="default" id="PXa-iZ-Fgh"/>
                             <constraint firstAttribute="trailing" secondItem="Fj6-Af-oVa" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="UZv-sG-EEd"/>
-                            <constraint firstItem="Ijq-CR-cGv" firstAttribute="top" secondItem="5" secondAttribute="top" constant="166" id="Wf1-aW-1WU"/>
-                            <constraint firstItem="Ijq-CR-cGv" firstAttribute="centerY" secondItem="Fj6-Af-oVa" secondAttribute="centerY" type="default" id="Yfu-4h-NTe"/>
                             <constraint firstItem="fCS-Gg-sAg" firstAttribute="centerX" secondItem="gLP-gI-GOW" secondAttribute="centerX" type="default" id="ZXj-JU-eOS"/>
-                            <constraint firstItem="fEY-Ud-3eM" firstAttribute="trailing" secondItem="VkK-GQ-BPU" secondAttribute="trailing" type="default" id="aFa-XY-7MQ"/>
+                            <constraint firstItem="Ijq-CR-cGv" firstAttribute="leading" secondItem="fEY-Ud-3eM" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Zhc-eR-UHd"/>
                             <constraint firstAttribute="trailing" secondItem="gLP-gI-GOW" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="dqA-SK-4Cm"/>
                             <constraint firstAttribute="bottom" secondItem="ONG-Ri-men" secondAttribute="bottom" constant="431" id="jIb-P2-1Ds"/>
-                            <constraint firstItem="Ijq-CR-cGv" firstAttribute="bottom" secondItem="fEY-Ud-3eM" secondAttribute="bottom" type="default" id="jos-uB-w7c"/>
                             <constraint firstItem="fEY-Ud-3eM" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="n0z-1U-Npi"/>
+                            <constraint firstItem="Ijq-CR-cGv" firstAttribute="top" secondItem="5" secondAttribute="top" constant="109" id="sKS-B3-FLq"/>
                             <constraint firstItem="HwZ-IF-84m" firstAttribute="bottom" secondItem="vlG-lS-LAQ" secondAttribute="bottom" type="default" id="tPN-qh-v1g"/>
                             <constraint firstItem="Fj6-Af-oVa" firstAttribute="leading" secondItem="HwZ-IF-84m" secondAttribute="leading" type="default" id="u2s-uN-OMs"/>
                             <constraint firstItem="VkK-GQ-BPU" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="ulE-rx-xij"/>
@@ -168,6 +171,7 @@
                     </view>
                     <connections>
                         <outlet property="boardImageView" destination="Ijq-CR-cGv" id="QDl-af-YV6"/>
+                        <outlet property="resetButton" destination="ONG-Ri-men" id="ypw-6o-oGs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
@@ -192,8 +196,10 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/jjkViewController.h"/>
             <relationships>
                 <relationship kind="action" name="boardButtonPressed:"/>
+                <relationship kind="action" name="resetButtonPressed:"/>
                 <relationship kind="action" name="solveButtonPressed:"/>
                 <relationship kind="outlet" name="boardImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="resetButton" candidateClass="UIButton"/>
             </relationships>
         </class>
     </classes>
