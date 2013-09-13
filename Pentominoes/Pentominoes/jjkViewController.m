@@ -1,9 +1,8 @@
 //
-//  jjkViewController.m
-//  Pentominoes
-//
-//  Created by Joshua Kuiros on 9/10/13.
-//  Copyright (c) 2013 Joshua Kuiros. All rights reserved.
+// Name:    Joshua Kuiros
+// Section: CMPSC 475
+// Program: Assignment 2
+// Date: September 13, 2013
 //
 
 #import "jjkViewController.h"
@@ -20,6 +19,7 @@
 @property NSInteger currentBoardSelected;
 @end
 
+BOOL solved = NO;
 
 @implementation jjkViewController
 
@@ -28,26 +28,23 @@
 {
     
     
-    CGPoint startingPoint = self.boardImageView.frame.origin;
+    CGPoint startingPoint = self.boardImageView.frame.origin;               // find boards origins
     startingPoint.y += self.boardImageView.frame.size.height;
     startingPoint.y = startingPoint.y + yOffset/2;
     startingPoint.x = startingPoint.x - 4*xOffset;
     
     CGPoint currentPoint = startingPoint;
     
-    NSInteger screenWidth = [UIScreen mainScreen].bounds.size.width;
-    //NSInteger screenHeight = [UIScreen mainScreen].bounds.size.height;
+    NSInteger screenWidth = [UIScreen mainScreen].bounds.size.width;        // get screen width to use for bounds
     
-    
-
     
     for(id key in self.puzzlePieceDictionary)
     {
-        UIImageView *temporaryImageView = [[self.puzzlePieceDictionary objectForKey:key] objectForKey:@"ImageView"];
+        UIImageView *temporaryImageView = [[self.puzzlePieceDictionary objectForKey:key] objectForKey:@"PieceImage"];
        // NSNumber *temporaryRotations = [[self.puzzlePieceDictionary objectForKey:key] objectForKey:@"rotations"];
         //NSNumber *temporaryFlips = [[self.puzzlePieceDictionary objectForKey:key] objectForKey:@"flips"];
         
-        if(currentPoint.x + temporaryImageView.frame.size.width >= screenWidth)
+        if(currentPoint.x + temporaryImageView.frame.size.width >= screenWidth)         // line break
         {
             currentPoint.x = startingPoint.x;
             currentPoint.y += yOffset;
@@ -58,7 +55,7 @@
             
             
         }
-        else
+        else                                                                    // add piece to current row 
         {
             temporaryImageView.frame = CGRectMake(currentPoint.x, currentPoint.y, temporaryImageView.frame.size.width, temporaryImageView.frame.size.height);
             currentPoint.x += temporaryImageView.image.size.width/2 + xOffset;
@@ -101,9 +98,9 @@
 {
     NSArray *initialPuzzlePieceArray = [NSArray arrayWithObjects:@"tileF.png",@"tileI.png",@"tileL.png",@"tileN.png",@"tileP.png",@"tileT.png",@"tileU.png",@"tileV.png",@"tileW.png",@"tileX.png",@"tileY.png",@"tileZ.png", nil];
     
-    NSMutableDictionary *puzzlePiecesDictionary = [NSMutableDictionary dictionary];
+    NSMutableDictionary *piecesDictionary = [NSMutableDictionary dictionary];
     
-    NSRange keyRange;
+    NSRange keyRange;                                   // used to retrieve the specific tile's key 
     keyRange.length = 1;
     keyRange.location = 4;
     
@@ -115,19 +112,26 @@
         UIImageView *temporaryPuzzleImageView = [[UIImageView alloc] initWithImage:image];
         temporaryPuzzleImageView.frame = CGRectMake(0,0, image.size.width/2, image.size.height/2);
         
-        [propertiesDictionary setObject:temporaryPuzzleImageView forKey:@"ImageView" ];
-        [puzzlePiecesDictionary setObject:propertiesDictionary forKey:[path substringWithRange:keyRange]];
+        [propertiesDictionary setObject:temporaryPuzzleImageView forKey:@"PieceImage" ];
+        [piecesDictionary setObject:propertiesDictionary forKey:[path substringWithRange:keyRange]];
         
     }
     
-    return puzzlePiecesDictionary;
+    return piecesDictionary;
 }
 
 
 
 -(IBAction)boardButtonPressed:(id)sender
 {
-    NSString *boardImageSelected = [NSString stringWithFormat:@"Board%d.png", [sender tag]];
+    if(solved == YES)
+    {
+        [self resetButtonPressed:nil];
+    }
+    
+    solved = NO;
+    
+    NSString *boardImageSelected = [NSString stringWithFormat:@"Board%d.png", [sender tag]];        // tag corresponds to specific Board, i.e. Board 1 has a tag of 1
     
     self.boardImageView.image = [UIImage imageNamed:boardImageSelected];
     
@@ -140,6 +144,7 @@
 
 - (IBAction)solveButtonPressed:(id)sender
 {
+    solved = YES;
     NSBundle *bundle = [NSBundle mainBundle];
     NSString *solutionFile = [bundle pathForResource:@"Solutions" ofType:@".plist"];
     NSArray *solutionsArray = [NSArray arrayWithContentsOfFile:solutionFile];
@@ -156,7 +161,6 @@
     }
     
     
-    
     if(self.currentBoardSelected == 0)
     {
         return;
@@ -166,12 +170,12 @@
     
     for(id key in self.puzzlePieceDictionary)
     {
-        UIImageView *currentImageView = [[self.puzzlePieceDictionary objectForKey:key] objectForKey:@"ImageView"];
+        UIImageView *currentImageView = [[self.puzzlePieceDictionary objectForKey:key] objectForKey:@"PieceImage"];
         NSDictionary *pieceDictionary = [boardDictionary objectForKey:key];
         NSInteger xCoordinate = [[pieceDictionary objectForKey:@"x"] integerValue];
         NSInteger yCoordinate = [[pieceDictionary objectForKey:@"y"] integerValue];
         
-        CGFloat x = self.boardImageView.frame.origin.x;
+        CGFloat x = self.boardImageView.frame.origin.x;                 // account for square offset of 30 
         x += xCoordinate*squareDimension;
        
         CGFloat y = self.boardImageView.frame.origin.y;
@@ -206,6 +210,7 @@
     NSString *solutionFile = [bundle pathForResource:@"Solutions" ofType:@".plist"];
     NSArray *solutionsArray = [NSArray arrayWithContentsOfFile:solutionFile];
     NSDictionary *boardDictionary;
+    solved = NO;
     
     self.resetButton.enabled = NO;
     
@@ -218,7 +223,7 @@
     
     for(id key in self.puzzlePieceDictionary)
     {
-        UIImageView *currentImageView = [[self.puzzlePieceDictionary objectForKey:key] objectForKey:@"ImageView"];
+        UIImageView *currentImageView = [[self.puzzlePieceDictionary objectForKey:key] objectForKey:@"PieceImage"];
         NSDictionary *pieceDictionary = [boardDictionary objectForKey:key];
         NSInteger xCoordinate = [[pieceDictionary objectForKey:@"x"] integerValue];
         NSInteger yCoordinate = [[pieceDictionary objectForKey:@"y"] integerValue];
@@ -234,11 +239,12 @@
         
         
        [UIView animateWithDuration:1 animations:^{
-        if(flips == 1)
+        if(flips == 1)                                  // undo flips
         {
             currentImageView.transform = CGAffineTransformScale(currentImageView.transform, -1, 1);
         }
         
+        // undo rotations
         currentImageView.transform = CGAffineTransformRotate(currentImageView.transform, -(rotations * M_PI/2));
         
         currentImageView.frame = CGRectMake(x, y, currentImageView.frame.size.width, currentImageView.frame.size.height);
@@ -246,7 +252,6 @@
        }];
         
     }    
-    
     
     [UIView animateWithDuration:1 animations:^{
     [self displayPuzzlePieces];

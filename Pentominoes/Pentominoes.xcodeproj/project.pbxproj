@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B64C10917E3B916004AF84C /* solvebutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B64C10817E3B916004AF84C /* solvebutton.png */; };
+		7B64C10C17E3B91B004AF84C /* resetbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B64C10B17E3B91B004AF84C /* resetbutton.png */; };
 		7BDA7A8517DFB8880006198C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BDA7A8417DFB8880006198C /* UIKit.framework */; };
 		7BDA7A8717DFB8880006198C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BDA7A8617DFB8880006198C /* Foundation.framework */; };
 		7BDA7A8917DFB8880006198C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BDA7A8817DFB8880006198C /* CoreGraphics.framework */; };
@@ -46,6 +48,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B64C10817E3B916004AF84C /* solvebutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = solvebutton.png; sourceTree = "<group>"; };
+		7B64C10B17E3B91B004AF84C /* resetbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resetbutton.png; sourceTree = "<group>"; };
 		7BDA7A8017DFB8880006198C /* Pentominoes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pentominoes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BDA7A8417DFB8880006198C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7BDA7A8617DFB8880006198C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -150,6 +154,8 @@
 				7BDA7AAA17DFBD8C0006198C /* Board0button.png */,
 				7BDA7AAB17DFBD8C0006198C /* Board1.png */,
 				7BDA7AAC17DFBD8C0006198C /* Board1button.png */,
+				7B64C10B17E3B91B004AF84C /* resetbutton.png */,
+				7B64C10817E3B916004AF84C /* solvebutton.png */,
 				7BDA7AAD17DFBD8C0006198C /* Board2.png */,
 				7BDA7AAE17DFBD8C0006198C /* Board2button.png */,
 				7BDA7AAF17DFBD8C0006198C /* Board3.png */,
@@ -264,6 +270,8 @@
 				7BDA7AD817DFBD8C0006198C /* tileX.png in Resources */,
 				7BDA7AD917DFBD8C0006198C /* tileY.png in Resources */,
 				7BDA7ADA17DFBD8C0006198C /* tileZ.png in Resources */,
+				7B64C10917E3B916004AF84C /* solvebutton.png in Resources */,
+				7B64C10C17E3B91B004AF84C /* resetbutton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
