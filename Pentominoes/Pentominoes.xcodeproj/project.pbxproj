@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		7B64C10917E3B916004AF84C /* solvebutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B64C10817E3B916004AF84C /* solvebutton.png */; };
 		7B64C10C17E3B91B004AF84C /* resetbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B64C10B17E3B91B004AF84C /* resetbutton.png */; };
+		7B64C11217E3BEE0004AF84C /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B64C11117E3BEE0004AF84C /* icon.png */; };
+		7B64C11617E3C0B7004AF84C /* launchimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B64C11517E3C0B7004AF84C /* launchimage.png */; };
+		7B64C11817E3C0C7004AF84C /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B64C11717E3C0C7004AF84C /* Default-Portrait@2x~ipad.png */; };
 		7BDA7A8517DFB8880006198C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BDA7A8417DFB8880006198C /* UIKit.framework */; };
 		7BDA7A8717DFB8880006198C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BDA7A8617DFB8880006198C /* Foundation.framework */; };
 		7BDA7A8917DFB8880006198C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BDA7A8817DFB8880006198C /* CoreGraphics.framework */; };
@@ -50,6 +53,10 @@
 /* Begin PBXFileReference section */
 		7B64C10817E3B916004AF84C /* solvebutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = solvebutton.png; sourceTree = "<group>"; };
 		7B64C10B17E3B91B004AF84C /* resetbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resetbutton.png; sourceTree = "<group>"; };
+		7B64C11117E3BEE0004AF84C /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		7B64C11317E3BEF1004AF84C /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		7B64C11517E3C0B7004AF84C /* launchimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchimage.png; sourceTree = "<group>"; };
+		7B64C11717E3C0C7004AF84C /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		7BDA7A8017DFB8880006198C /* Pentominoes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pentominoes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BDA7A8417DFB8880006198C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7BDA7A8617DFB8880006198C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -110,6 +117,8 @@
 		7BDA7A7517DFB8870006198C = {
 			isa = PBXGroup;
 			children = (
+				7B64C11717E3C0C7004AF84C /* Default-Portrait@2x~ipad.png */,
+				7B64C11317E3BEF1004AF84C /* icon.png */,
 				7BDA7A8A17DFB8880006198C /* Pentominoes */,
 				7BDA7A8317DFB8880006198C /* Frameworks */,
 				7BDA7A8117DFB8880006198C /* Products */,
@@ -150,6 +159,7 @@
 		7BDA7A8B17DFB8880006198C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7B64C11517E3C0B7004AF84C /* launchimage.png */,
 				7BDA7AA917DFBD8C0006198C /* Board0.png */,
 				7BDA7AAA17DFBD8C0006198C /* Board0button.png */,
 				7BDA7AAB17DFBD8C0006198C /* Board1.png */,
@@ -159,6 +169,7 @@
 				7BDA7AAD17DFBD8C0006198C /* Board2.png */,
 				7BDA7AAE17DFBD8C0006198C /* Board2button.png */,
 				7BDA7AAF17DFBD8C0006198C /* Board3.png */,
+				7B64C11117E3BEE0004AF84C /* icon.png */,
 				7BDA7AB017DFBD8C0006198C /* Board3button.png */,
 				7BDA7AB117DFBD8C0006198C /* Board4.png */,
 				7BDA7AB217DFBD8C0006198C /* Board4button.png */,
@@ -272,6 +283,9 @@
 				7BDA7ADA17DFBD8C0006198C /* tileZ.png in Resources */,
 				7B64C10917E3B916004AF84C /* solvebutton.png in Resources */,
 				7B64C10C17E3B91B004AF84C /* resetbutton.png in Resources */,
+				7B64C11217E3BEE0004AF84C /* icon.png in Resources */,
+				7B64C11617E3C0B7004AF84C /* launchimage.png in Resources */,
+				7B64C11817E3C0C7004AF84C /* Default-Portrait@2x~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
