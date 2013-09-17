@@ -16,7 +16,7 @@
 - (IBAction)resetButtonPressed:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *resetButton;
 @property (weak, nonatomic) IBOutlet UIImageView *boardImageView;
-@property (nonatomic, strong) NSMutableDictionary *puzzlePieceDictionary;
+@property (weak, nonatomic) IBOutlet UIImageView *temporaryImageView;
 @property NSInteger currentBoardSelected;
 @property (nonatomic,strong) Model *model;
 @end
@@ -45,14 +45,13 @@ BOOL solved = NO;
     
     CGPoint currentPoint = startingPoint;
     
-    NSInteger screenWidth = [UIScreen mainScreen].bounds.size.width;        // get screen width to use for bounds
+    //NSInteger screenWidth = [UIScreen mainScreen].bounds.size.width;        // get screen width to use for bounds
     
+    NSMutableDictionary *temporaryDictionary = [self.model getPuzzlePieceDictionary];
     
-    for(id key in self.puzzlePieceDictionary)
+    for(id key in temporaryDictionary)
     {
-        UIImageView *temporaryImageView = [[self.puzzlePieceDictionary objectForKey:key] objectForKey:@"PieceImage"];
-       // NSNumber *temporaryRotations = [[self.puzzlePieceDictionary objectForKey:key] objectForKey:@"rotations"];
-        //NSNumber *temporaryFlips = [[self.puzzlePieceDictionary objectForKey:key] objectForKey:@"flips"];
+        UIImageView *temporaryImageView = [[temporaryDictionary objectForKey:key] objectForKey:@"PieceImage"];
         
         if(currentPoint.x + temporaryImageView.frame.size.width >= self.boardImageView.frame.origin.x + self.boardImageView.frame.size.width + xOffset*4)         // line break
         {
@@ -72,6 +71,7 @@ BOOL solved = NO;
             
             
         }
+        self.temporaryImageView.userInteractionEnabled = YES;
         
         [self.view addSubview:temporaryImageView];
         
@@ -83,14 +83,17 @@ BOOL solved = NO;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
+    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panRecognized:)];
+    [self.view addGestureRecognizer:panGesture];
     
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     
-    _puzzlePieceDictionary = [self.model initializePuzzlePieces];
+    [self.model initializePuzzlePieces];
+    [self.model initializeSolutions];
+    
     [UIView animateWithDuration:1 animations:^{
     [self displayPuzzlePieces];
     }];
@@ -128,10 +131,10 @@ BOOL solved = NO;
 - (IBAction)solveButtonPressed:(id)sender
 {
     solved = YES;
-    NSBundle *bundle = [NSBundle mainBundle];
-    NSString *solutionFile = [bundle pathForResource:@"Solutions" ofType:@".plist"];
-    NSArray *solutionsArray = [NSArray arrayWithContentsOfFile:solutionFile];
+    NSArray *solutionsArray = [self.model getSolutions];
     NSDictionary *boardDictionary;
+    
+    NSMutableDictionary *temporaryDictionary = [self.model getPuzzlePieceDictionary];
     
     
     if(self.currentBoardSelected != 0)
@@ -151,9 +154,10 @@ BOOL solved = NO;
     
     boardDictionary = solutionsArray[self.currentBoardSelected - 1];
     
-    for(id key in self.puzzlePieceDictionary)
+    for(id key in temporaryDictionary)
     {
-        UIImageView *currentImageView = [[self.puzzlePieceDictionary objectForKey:key] objectForKey:@"PieceImage"];
+        //UIImageView *currentImageView = [[temporaryDictionary objectForKey:key] objectForKey:@"PieceImage"];
+        UIImageView *currentImageView = [self.model getPuzzlePieceImageView:@"PieceImage" withKey:key];
         NSDictionary *pieceDictionary = [boardDictionary objectForKey:key];
         NSInteger xCoordinate = [[pieceDictionary objectForKey:@"x"] integerValue];
         NSInteger yCoordinate = [[pieceDictionary objectForKey:@"y"] integerValue];
@@ -189,9 +193,7 @@ BOOL solved = NO;
 
 - (IBAction)resetButtonPressed:(id)sender
 {
-    NSBundle *bundle = [NSBundle mainBundle];
-    NSString *solutionFile = [bundle pathForResource:@"Solutions" ofType:@".plist"];
-    NSArray *solutionsArray = [NSArray arrayWithContentsOfFile:solutionFile];
+    NSMutableArray *solutionsArray = [self.model getSolutions];
     NSDictionary *boardDictionary;
     solved = NO;
     
@@ -204,9 +206,11 @@ BOOL solved = NO;
     
     boardDictionary = solutionsArray[self.currentBoardSelected - 1];
     
-    for(id key in self.puzzlePieceDictionary)
+    NSMutableDictionary *temporaryDictionary = [self.model getPuzzlePieceDictionary];
+    
+    for(id key in temporaryDictionary)
     {
-        UIImageView *currentImageView = [[self.puzzlePieceDictionary objectForKey:key] objectForKey:@"PieceImage"];
+        UIImageView *currentImageView = [[temporaryDictionary objectForKey:key] objectForKey:@"PieceImage"];
         NSDictionary *pieceDictionary = [boardDictionary objectForKey:key];
         NSInteger xCoordinate = [[pieceDictionary objectForKey:@"x"] integerValue];
         NSInteger yCoordinate = [[pieceDictionary objectForKey:@"y"] integerValue];
@@ -259,6 +263,29 @@ BOOL solved = NO;
     self.resetButton.enabled = NO;
     
 }
+
+
+-(void)panRecognized:(UIPanGestureRecognizer*)recognizer {
+    
+
+    
+    UIView *pannedView = recognizer.view;
+    
+    switch (recognizer.state) {
+        case UIGestureRecognizerStateBegan:
+            break;
+        case UIGestureRecognizerStateChanged:
+            pannedView.center = [recognizer locationInView:self.view];
+            break;
+        case UIGestureRecognizerStateEnded:
+            break;
+        case UIGestureRecognizerStateCancelled:
+            break;
+        default:
+            break;
+    }
+}
+
 
 
 

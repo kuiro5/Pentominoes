@@ -6,10 +6,14 @@
 //  Copyright (c) 2013 Joshua Kuiros. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface Model : UIViewController
-//@property (nonatomic, strong) NSMutableDictionary *puzzlePieceDictionary;
--(NSMutableDictionary*)initializePuzzlePieces;
+@interface Model : NSObject
+-(NSMutableDictionary*)getPuzzlePieceDictionary;
+-(void)initializePuzzlePieces;
+
+-(void)initializeSolutions;
+-(NSMutableArray*)getSolutions;
+-(UIImageView*)getPuzzlePieceImageView:(NSString*)view withKey:(id)key;
 
 @end
