@@ -6,8 +6,9 @@
 //
 
 #import "jjkViewController.h"
+#import "Model.h"
 #define yOffset 110
-#define xOffset 10
+#define xOffset 15
 #define squareDimension 30
 
 @interface jjkViewController ()
@@ -17,11 +18,20 @@
 @property (weak, nonatomic) IBOutlet UIImageView *boardImageView;
 @property (nonatomic, strong) NSMutableDictionary *puzzlePieceDictionary;
 @property NSInteger currentBoardSelected;
+@property (nonatomic,strong) Model *model;
 @end
 
 BOOL solved = NO;
 
 @implementation jjkViewController
+
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        _model = [[Model alloc] init];
+    }
+    return self;
+}
 
 
 -(void)displayPuzzlePieces
@@ -31,7 +41,7 @@ BOOL solved = NO;
     CGPoint startingPoint = self.boardImageView.frame.origin;               // find boards origins
     startingPoint.y += self.boardImageView.frame.size.height;
     startingPoint.y = startingPoint.y + yOffset/2;
-    startingPoint.x = startingPoint.x - 4*xOffset;
+    startingPoint.x = startingPoint.x - 2*xOffset;
     
     CGPoint currentPoint = startingPoint;
     
@@ -44,14 +54,14 @@ BOOL solved = NO;
        // NSNumber *temporaryRotations = [[self.puzzlePieceDictionary objectForKey:key] objectForKey:@"rotations"];
         //NSNumber *temporaryFlips = [[self.puzzlePieceDictionary objectForKey:key] objectForKey:@"flips"];
         
-        if(currentPoint.x + temporaryImageView.frame.size.width >= screenWidth)         // line break
+        if(currentPoint.x + temporaryImageView.frame.size.width >= self.boardImageView.frame.origin.x + self.boardImageView.frame.size.width + xOffset*4)         // line break
         {
             currentPoint.x = startingPoint.x;
             currentPoint.y += yOffset;
             
             temporaryImageView.frame = CGRectMake(currentPoint.x, currentPoint.y, temporaryImageView.frame.size.width, temporaryImageView.frame.size.height);
             
-            currentPoint.x += temporaryImageView.image.size.width + xOffset;
+            currentPoint.x += temporaryImageView.image.size.width/2 + xOffset;
             
             
         }
@@ -80,7 +90,7 @@ BOOL solved = NO;
 -(void)viewDidAppear:(BOOL)animated
 {
     
-    _puzzlePieceDictionary = [self initializePuzzlePieces];
+    _puzzlePieceDictionary = [self.model initializePuzzlePieces];
     [UIView animateWithDuration:1 animations:^{
     [self displayPuzzlePieces];
     }];
@@ -93,33 +103,6 @@ BOOL solved = NO;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
--(NSMutableDictionary*)initializePuzzlePieces
-{
-    NSArray *initialPuzzlePieceArray = [NSArray arrayWithObjects:@"tileF.png",@"tileI.png",@"tileL.png",@"tileN.png",@"tileP.png",@"tileT.png",@"tileU.png",@"tileV.png",@"tileW.png",@"tileX.png",@"tileY.png",@"tileZ.png", nil];
-    
-    NSMutableDictionary *piecesDictionary = [NSMutableDictionary dictionary];
-    
-    NSRange keyRange;                                   // used to retrieve the specific tile's key 
-    keyRange.length = 1;
-    keyRange.location = 4;
-    
-    for(NSString *path in initialPuzzlePieceArray)
-    {
-        UIImage *image = [UIImage imageNamed:path];
-        NSMutableDictionary *propertiesDictionary = [NSMutableDictionary dictionary];
-        
-        UIImageView *temporaryPuzzleImageView = [[UIImageView alloc] initWithImage:image];
-        temporaryPuzzleImageView.frame = CGRectMake(0,0, image.size.width/2, image.size.height/2);
-        
-        [propertiesDictionary setObject:temporaryPuzzleImageView forKey:@"PieceImage" ];
-        [piecesDictionary setObject:propertiesDictionary forKey:[path substringWithRange:keyRange]];
-        
-    }
-    
-    return piecesDictionary;
-}
-
 
 
 -(IBAction)boardButtonPressed:(id)sender
@@ -257,4 +240,26 @@ BOOL solved = NO;
     [self displayPuzzlePieces];
     }];
     }
+
+
+
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    
+    if(solved)
+    {
+        [self resetButtonPressed:nil];
+        
+    }
+    [UIView animateWithDuration:1 animations:^{
+        [self displayPuzzlePieces];
+    }];
+    
+    self.resetButton.enabled = NO;
+    
+}
+
+
+
 @end

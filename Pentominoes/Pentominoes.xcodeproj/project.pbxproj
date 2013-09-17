@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B41792117E7C7C20065DE63 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B41792017E7C7C20065DE63 /* Model.m */; };
 		7B64C10917E3B916004AF84C /* solvebutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B64C10817E3B916004AF84C /* solvebutton.png */; };
 		7B64C10C17E3B91B004AF84C /* resetbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B64C10B17E3B91B004AF84C /* resetbutton.png */; };
 		7B64C11217E3BEE0004AF84C /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B64C11117E3BEE0004AF84C /* icon.png */; };
@@ -51,6 +52,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B41791F17E7C7C20065DE63 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		7B41792017E7C7C20065DE63 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		7B64C10817E3B916004AF84C /* solvebutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = solvebutton.png; sourceTree = "<group>"; };
 		7B64C10B17E3B91B004AF84C /* resetbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resetbutton.png; sourceTree = "<group>"; };
 		7B64C11117E3BEE0004AF84C /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
@@ -146,6 +149,8 @@
 		7BDA7A8A17DFB8880006198C /* Pentominoes */ = {
 			isa = PBXGroup;
 			children = (
+				7B41791F17E7C7C20065DE63 /* Model.h */,
+				7B41792017E7C7C20065DE63 /* Model.m */,
 				7BDA7A9317DFB8880006198C /* jjkAppDelegate.h */,
 				7BDA7A9417DFB8880006198C /* jjkAppDelegate.m */,
 				7BDA7A9C17DFB8880006198C /* MainStoryboard.storyboard */,
@@ -299,6 +304,7 @@
 				7BDA7A9117DFB8880006198C /* main.m in Sources */,
 				7BDA7A9517DFB8880006198C /* jjkAppDelegate.m in Sources */,
 				7BDA7AA117DFB8880006198C /* jjkViewController.m in Sources */,
+				7B41792117E7C7C20065DE63 /* Model.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
