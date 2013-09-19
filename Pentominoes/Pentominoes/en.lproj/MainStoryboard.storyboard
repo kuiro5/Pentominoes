@@ -12,12 +12,12 @@
                         <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="Board0.png" id="Ijq-CR-cGv">
-                                <rect key="frame" x="174" y="103" width="420" height="420"/>
+                            <imageView contentMode="scaleAspectFill" image="Board0.png" id="Ijq-CR-cGv">
+                                <rect key="frame" x="174" y="33" width="420" height="420"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vlG-lS-LAQ">
-                                <rect key="frame" x="20" y="150" width="114" height="91"/>
+                                <rect key="frame" x="20" y="33" width="114" height="91"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Button" image="Board0button.png">
@@ -32,7 +32,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="VkK-GQ-BPU">
-                                <rect key="frame" x="20" y="268" width="114" height="90"/>
+                                <rect key="frame" x="20" y="171" width="114" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Button" image="Board1button.png">
@@ -47,7 +47,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fEY-Ud-3eM">
-                                <rect key="frame" x="20" y="396" width="114" height="90"/>
+                                <rect key="frame" x="20" y="313" width="114" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Button" image="Board2button.png">
@@ -62,7 +62,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HwZ-IF-84m">
-                                <rect key="frame" x="634" y="150" width="114" height="91"/>
+                                <rect key="frame" x="634" y="33" width="114" height="91"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Button" image="Board3button.png">
@@ -77,7 +77,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Fj6-Af-oVa">
-                                <rect key="frame" x="634" y="268" width="114" height="90"/>
+                                <rect key="frame" x="634" y="171" width="114" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Button" image="Board4button.png">
@@ -92,7 +92,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gLP-gI-GOW">
-                                <rect key="frame" x="634" y="396" width="114" height="90"/>
+                                <rect key="frame" x="634" y="313" width="114" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Button" image="Board5button.png">
@@ -107,7 +107,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ONG-Ri-men">
-                                <rect key="frame" x="45" y="529" width="65" height="44"/>
+                                <rect key="frame" x="51" y="454" width="65" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Reset" image="resetbutton.png">
@@ -122,7 +122,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fCS-Gg-sAg">
-                                <rect key="frame" x="659" y="529" width="65" height="44"/>
+                                <rect key="frame" x="659" y="454" width="65" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Solve" image="solvebutton.png">
@@ -136,13 +136,21 @@
                                     <action selector="solveButtonPressed:" destination="2" eventType="touchUpInside" id="McJ-Cu-E6K"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Pentominoes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jfj-Gc-dLI">
-                                <rect key="frame" x="217" y="14" width="335" height="63"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="56"/>
-                                <color key="textColor" red="0.94757368900864303" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vam-Xa-1Ci">
+                                <rect key="frame" x="675" y="894" width="73" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Button" image="infobutton.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="dGJ-k3-klj" kind="modal" identifier="InfoSegue" modalTransitionStyle="partialCurl" id="ScE-RR-K7s"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
@@ -155,6 +163,65 @@
             </objects>
             <point key="canvasLocation" x="-517" y="-352"/>
         </scene>
+        <!--Jjk Info View Controller-->
+        <scene sceneID="fB7-5T-ODe">
+            <objects>
+                <viewController id="dGJ-k3-klj" customClass="jjkInfoViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="n6Q-hp-arK">
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Pentominoes!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="07g-OF-zjR">
+                                <rect key="frame" x="0.0" y="182" width="768" height="141"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                <color key="textColor" red="1" green="1" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Joshua Kuiros" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hvR-6e-77P">
+                                <rect key="frame" x="0.0" y="396" width="768" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" red="1" green="1" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Fall 2013" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6Rt-QQ-mkh">
+                                <rect key="frame" x="0.0" y="469" width="768" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="CMPSC 465" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2H7-0z-nCI">
+                                <rect key="frame" x="0.0" y="536" width="768" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="v1d-7V-FVy">
+                                <rect key="frame" x="348" y="783" width="73" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Button" image="backbutton2.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismissPressed:" destination="dGJ-k3-klj" eventType="touchUpInside" id="St5-56-S6L"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.25098040699958801" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hmk-rh-1V9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="642" y="-352"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Board0.png" width="840" height="840"/>
@@ -164,17 +231,31 @@
         <image name="Board3button.png" width="105" height="105"/>
         <image name="Board4button.png" width="105" height="105"/>
         <image name="Board5button.png" width="105" height="105"/>
+        <image name="backbutton2.png" width="50" height="50"/>
+        <image name="infobutton.png" width="50" height="50"/>
         <image name="resetbutton.png" width="70" height="35"/>
         <image name="solvebutton.png" width="70" height="35"/>
     </resources>
     <classes>
+        <class className="UIStoryboardSegue" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
+        </class>
+        <class className="jjkInfoViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/jjkInfoViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="dismissPressed:"/>
+            </relationships>
+        </class>
         <class className="jjkViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/jjkViewController.h"/>
             <relationships>
+                <relationship kind="action" name="boardButtonPressed:"/>
                 <relationship kind="action" name="resetButtonPressed:"/>
                 <relationship kind="action" name="solveButtonPressed:"/>
+                <relationship kind="action" name="unwindSegue:" candidateClass="UIStoryboardSegue"/>
                 <relationship kind="outlet" name="boardImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="resetButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="temporaryImageView" candidateClass="UIImageView"/>
             </relationships>
         </class>
     </classes>

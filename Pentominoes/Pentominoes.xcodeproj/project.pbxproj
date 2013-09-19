@@ -13,6 +13,10 @@
 		7B64C11217E3BEE0004AF84C /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B64C11117E3BEE0004AF84C /* icon.png */; };
 		7B64C11617E3C0B7004AF84C /* launchimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B64C11517E3C0B7004AF84C /* launchimage.png */; };
 		7B64C11817E3C0C7004AF84C /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B64C11717E3C0C7004AF84C /* Default-Portrait@2x~ipad.png */; };
+		7BC16F6E17EBA03900CCB48B /* infobutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BC16F6D17EBA03900CCB48B /* infobutton.png */; };
+		7BC16F7117EBA1F700CCB48B /* backbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BC16F7017EBA1F700CCB48B /* backbutton.png */; };
+		7BC16F7717EBA49400CCB48B /* backbutton2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BC16F7617EBA49400CCB48B /* backbutton2.png */; };
+		7BC16F7A17EBA65500CCB48B /* jjkInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BC16F7917EBA65500CCB48B /* jjkInfoViewController.m */; };
 		7BDA7A8517DFB8880006198C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BDA7A8417DFB8880006198C /* UIKit.framework */; };
 		7BDA7A8717DFB8880006198C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BDA7A8617DFB8880006198C /* Foundation.framework */; };
 		7BDA7A8917DFB8880006198C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BDA7A8817DFB8880006198C /* CoreGraphics.framework */; };
@@ -60,6 +64,11 @@
 		7B64C11317E3BEF1004AF84C /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		7B64C11517E3C0B7004AF84C /* launchimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchimage.png; sourceTree = "<group>"; };
 		7B64C11717E3C0C7004AF84C /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
+		7BC16F6D17EBA03900CCB48B /* infobutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infobutton.png; sourceTree = "<group>"; };
+		7BC16F7017EBA1F700CCB48B /* backbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backbutton.png; sourceTree = "<group>"; };
+		7BC16F7617EBA49400CCB48B /* backbutton2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backbutton2.png; sourceTree = "<group>"; };
+		7BC16F7817EBA65500CCB48B /* jjkInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jjkInfoViewController.h; sourceTree = "<group>"; };
+		7BC16F7917EBA65500CCB48B /* jjkInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = jjkInfoViewController.m; sourceTree = "<group>"; };
 		7BDA7A8017DFB8880006198C /* Pentominoes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pentominoes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BDA7A8417DFB8880006198C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7BDA7A8617DFB8880006198C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -150,8 +159,11 @@
 			isa = PBXGroup;
 			children = (
 				7B41791F17E7C7C20065DE63 /* Model.h */,
+				7BC16F7817EBA65500CCB48B /* jjkInfoViewController.h */,
+				7BC16F7917EBA65500CCB48B /* jjkInfoViewController.m */,
 				7B41792017E7C7C20065DE63 /* Model.m */,
 				7BDA7A9317DFB8880006198C /* jjkAppDelegate.h */,
+				7BC16F7017EBA1F700CCB48B /* backbutton.png */,
 				7BDA7A9417DFB8880006198C /* jjkAppDelegate.m */,
 				7BDA7A9C17DFB8880006198C /* MainStoryboard.storyboard */,
 				7BDA7A9F17DFB8880006198C /* jjkViewController.h */,
@@ -164,11 +176,13 @@
 		7BDA7A8B17DFB8880006198C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7BC16F6D17EBA03900CCB48B /* infobutton.png */,
 				7B64C11517E3C0B7004AF84C /* launchimage.png */,
 				7BDA7AA917DFBD8C0006198C /* Board0.png */,
 				7BDA7AAA17DFBD8C0006198C /* Board0button.png */,
 				7BDA7AAB17DFBD8C0006198C /* Board1.png */,
 				7BDA7AAC17DFBD8C0006198C /* Board1button.png */,
+				7BC16F7617EBA49400CCB48B /* backbutton2.png */,
 				7B64C10B17E3B91B004AF84C /* resetbutton.png */,
 				7B64C10817E3B916004AF84C /* solvebutton.png */,
 				7BDA7AAD17DFBD8C0006198C /* Board2.png */,
@@ -291,6 +305,9 @@
 				7B64C11217E3BEE0004AF84C /* icon.png in Resources */,
 				7B64C11617E3C0B7004AF84C /* launchimage.png in Resources */,
 				7B64C11817E3C0C7004AF84C /* Default-Portrait@2x~ipad.png in Resources */,
+				7BC16F6E17EBA03900CCB48B /* infobutton.png in Resources */,
+				7BC16F7117EBA1F700CCB48B /* backbutton.png in Resources */,
+				7BC16F7717EBA49400CCB48B /* backbutton2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +322,7 @@
 				7BDA7A9517DFB8880006198C /* jjkAppDelegate.m in Sources */,
 				7BDA7AA117DFB8880006198C /* jjkViewController.m in Sources */,
 				7B41792117E7C7C20065DE63 /* Model.m in Sources */,
+				7BC16F7A17EBA65500CCB48B /* jjkInfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

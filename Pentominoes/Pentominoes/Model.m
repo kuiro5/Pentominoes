@@ -66,8 +66,6 @@
     NSBundle *bundle = [NSBundle mainBundle];
     NSString *solutionFile = [bundle pathForResource:@"Solutions" ofType:@".plist"];
     _solutionsArray = [NSArray arrayWithContentsOfFile:solutionFile];
-    
-    
 }
 
 -(NSMutableArray*)getSolutions
@@ -79,6 +77,25 @@
 {
     UIImageView *currentImageView = [[_puzzlePieceDictionary objectForKey:key] objectForKey:view];
     return currentImageView;
+}
+
+-(NSInteger)getXCoordinate:(NSDictionary*)dictionary
+{
+    NSInteger xVal = [[dictionary objectForKey:@"x"] integerValue];
+    return xVal;
+}
+
+-(NSInteger)getYCoordinate:(NSDictionary*)dictionary
+{
+    NSInteger yVal = [[dictionary objectForKey:@"y"] integerValue];
+    return yVal;
+}
+
+-(NSString*)getBoardImage:(NSInteger)tag
+{
+    NSString* boardImage = [NSString stringWithFormat:@"Board%d.png",  tag];
+    
+    return boardImage;
 }
 
 
