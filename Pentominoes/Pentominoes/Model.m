@@ -1,9 +1,8 @@
 //
-//  Model.m
-//  Pentominoes
-//
-//  Created by Joshua Kuiros on 9/16/13.
-//  Copyright (c) 2013 Joshua Kuiros. All rights reserved.
+// Name:    Joshua Kuiros
+// Section: CMPSC 475
+// Program: Assignment 3
+// Date: September 19, 2013
 //
 
 #import "Model.h"
@@ -29,10 +28,8 @@
 
 -(void)initializePuzzlePieces
 {
-    NSLog(@"initalizePuzzlePieces");
     NSArray *initialPuzzlePieceArray = [NSArray arrayWithObjects:@"tileF.png",@"tileI.png",@"tileL.png",@"tileN.png",@"tileP.png",@"tileT.png",@"tileU.png",@"tileV.png",@"tileW.png",@"tileX.png",@"tileY.png",@"tileZ.png", nil];
     
-    //NSMutableDictionary *temporaryDictionary = [NSMutableDictionary dictionary];
     
     NSRange keyRange;                                   // used to retrieve the specific tile's key
     keyRange.length = 1;
@@ -40,7 +37,7 @@
     
     for(NSString *path in initialPuzzlePieceArray)
     {
-        NSLog(@"i am adding pieces");
+        
         UIImage *image = [UIImage imageNamed:path];
         NSMutableDictionary *propertiesDictionary = [NSMutableDictionary dictionary];
         
@@ -49,11 +46,7 @@
         
         [propertiesDictionary setObject:temporaryPuzzleImageView forKey:@"PieceImage" ];
         [_puzzlePieceDictionary setObject:propertiesDictionary forKey:[path substringWithRange:keyRange]];
-        NSLog([path substringWithRange:keyRange]);
-        
     }
-    
-    //return piecesDictionary;
 }
 
 -(NSMutableDictionary*)getPuzzlePieceDictionary
@@ -97,8 +90,5 @@
     
     return boardImage;
 }
-
-
-
 
 @end

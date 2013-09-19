@@ -8,10 +8,12 @@
 #import "jjkViewController.h"
 #import "jjkInfoViewController.h"
 #import "Model.h"
+
 #define yOffset 110
 #define xOffset 15
 #define squareDimension 30
 #define screenBuffer 10
+#define roundValue .5
 
 @interface jjkViewController () <InfoDelegate>
 - (IBAction)solveButtonPressed:(id)sender;
@@ -27,7 +29,6 @@
 -(IBAction)unwindSegue:(UIStoryboardSegue*)segue;
 @end
 
-BOOL solved = NO;
 
 @implementation jjkViewController
 
@@ -49,14 +50,14 @@ BOOL solved = NO;
     
     CGPoint startingPoint = self.boardImageView.frame.origin;               // find boards origins
     startingPoint.y += self.boardImageView.frame.size.height + yOffset/2;
-    startingPoint.x = (self.boardImageView.frame.origin.x)/3;
+    startingPoint.x = (self.boardImageView.frame.origin.x)/3;               // 30% off the edge of the screen
     
     CGPoint rightEdge;
     rightEdge.x = self.boardImageView.frame.origin.x + self.boardImageView.frame.size.width;
     
     CGPoint currentPoint = startingPoint;
     
-    NSInteger screenWidth = self.view.bounds.size.width;        // get screen width to use for bounds
+    NSInteger screenWidth = self.view.bounds.size.width;                    // get screen width to use for bounds
     
     NSMutableDictionary *temporaryDictionary = [self.model getPuzzlePieceDictionary];
     
@@ -88,7 +89,7 @@ BOOL solved = NO;
          UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
         UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
         
-        [singleTap requireGestureRecognizerToFail:doubleTap];
+        [singleTap requireGestureRecognizerToFail:doubleTap];               
 
         doubleTap.numberOfTapsRequired = 2;
 
@@ -107,8 +108,6 @@ BOOL solved = NO;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
-    
 }
 
 
@@ -136,38 +135,26 @@ BOOL solved = NO;
 {
     [self resetButtonPressed:nil];
     
-    
-    solved = NO;
-    
     NSInteger board = [sender tag];
     
     NSString *boardImageSelected = [self.model getBoardImage:board];
     
-    
-    
-   // [NSString stringWithFormat:@"Board%d.png", [sender tag]];        // tag corresponds to specific Board, i.e. Board 1 has a tag of 1
-    
     self.boardImageView.image = [UIImage imageNamed:boardImageSelected];
-    
     self.currentBoardSelected = [sender tag];
-    
     self.resetButton.enabled = NO;
-    
-    
 }
 
 - (IBAction)solveButtonPressed:(id)sender
 {
-    solved = YES;
     NSArray *solutionsArray = [self.model getSolutions];
     NSDictionary *boardDictionary;
     
     NSMutableDictionary *temporaryDictionary = [self.model getPuzzlePieceDictionary];
     
     
-    if(self.currentBoardSelected != 0)
+    if(self.currentBoardSelected != 0)                  // no solution exists for board 0
     {
-        self.resetButton.enabled = YES;
+        self.resetButton.enabled = YES;                
     }
     else
     {
@@ -184,7 +171,6 @@ BOOL solved = NO;
     
     for(id key in temporaryDictionary)
     {
-        //UIImageView *currentImageView = [[temporaryDictionary objectForKey:key] objectForKey:@"PieceImage"];
         UIImageView *currentImageView = [self.model getPuzzlePieceImageView:@"PieceImage" withKey:key];
         NSDictionary *pieceDictionary = [boardDictionary objectForKey:key];
         NSInteger xCoordinate = [self.model getXCoordinate:pieceDictionary];
@@ -223,9 +209,8 @@ BOOL solved = NO;
 {
     NSMutableArray *solutionsArray = [self.model getSolutions];
     NSDictionary *boardDictionary;
-    solved = NO;
     
-        self.resetButton.enabled = NO;
+    self.resetButton.enabled = NO;
     
     if(self.currentBoardSelected == 0)
     {
@@ -243,12 +228,11 @@ BOOL solved = NO;
         [UIView animateWithDuration:1 animations:^{
         currentImageView.transform = CGAffineTransformIdentity;
         }];
-        
     }    
     
-    [UIView animateWithDuration:1 animations:^{
-    [self displayPuzzlePieces];
-    }];
+        [UIView animateWithDuration:1 animations:^{
+            [self displayPuzzlePieces];
+        }];
     }
 
 
@@ -256,18 +240,9 @@ BOOL solved = NO;
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    
-    if(solved)
-    {
-        [self resetButtonPressed:nil];
-        
-    }
-    [UIView animateWithDuration:1 animations:^{
-        [self displayPuzzlePieces];
-    }];
+    [self resetButtonPressed:nil];
     
     self.resetButton.enabled = NO;
-    
 }
 
 
@@ -290,25 +265,20 @@ BOOL solved = NO;
     switch (recognizer.state) {
         case UIGestureRecognizerStateBegan:
             pannedView.center = [recognizer locationInView:recognizer.view.superview];
-            //pannedView.transform = CGAffineTransformScale(pannedView.transform, .8, .8);
             break;
         case UIGestureRecognizerStateChanged:
             pannedView.center = [recognizer locationInView:recognizer.view.superview];
             break;
         case UIGestureRecognizerStateEnded:
-            //pannedView.transform = CGAffineTransformIdentity;
-            NSLog(@"dragging");
-            if([recognizer.view.superview isEqual:self.boardImageView])
+            if([recognizer.view.superview isEqual:self.boardImageView])                         // set coordinates based off of board image
             {
-                NSLog(@"inside if assinging");
                 boardX = 0;
                 boardY = 0;
                 boardXMax = recognizer.view.superview.frame.size.width;
                 boardYMax = recognizer.view.superview.frame.size.height;
             }
-            else 
+            else                                                                                // set coordinates based off of main view
             {
-                NSLog(@"inside else assigning");
                 boardX = self.boardImageView.frame.origin.x;
                 boardY = self.boardImageView.frame.origin.y;
                 boardXMax = self.boardImageView.frame.origin.x + self.boardImageView.frame.size.width;
@@ -317,35 +287,32 @@ BOOL solved = NO;
             
             }
             
+            // piece is being dragged on board image 
             if((pannedView.center.x > boardX) && (pannedView.center.x < boardXMax) && (pannedView.center.y > boardY) && (pannedView.center.y < boardYMax))
             {
-                NSLog(@"Inside first if");
              
-                if([recognizer.view.superview isEqual:self.view])
+                if([recognizer.view.superview isEqual:self.view])                                                   // dragging piece from main view to board
                 {
-                    NSLog(@"IF!");
                      newOrigin = [self.view convertPoint:pannedView.frame.origin toView:self.boardImageView];
                 
-                    newOrigin.x = 30 * floor((newOrigin.x/30)+0.5);
-                    newOrigin.y = 30 * floor((newOrigin.y/30)+0.5);
+                    newOrigin.x = squareDimension * floor((newOrigin.x/squareDimension)+roundValue);
+                    newOrigin.y = squareDimension * floor((newOrigin.y/squareDimension)+roundValue);
                 
                     CGRect newFrame = CGRectMake(newOrigin.x, newOrigin.y, pannedView.frame.size.width, pannedView.frame.size.height);
                     pannedView.frame = newFrame;
                     [self.boardImageView addSubview:pannedView];
                 }
-                else if([recognizer.view.superview isEqual:self.boardImageView])
+                else if([recognizer.view.superview isEqual:self.boardImageView])                                    // dragging piece around on board 
                 {
-                    NSLog(@"Else!");
-                    //CGPoint newOrigin;
-                    newOrigin.x = 30 * floor((pannedView.frame.origin.x/30)+0.5);
-                    newOrigin.y = 30 * floor((pannedView.frame.origin.y/30)+0.5);
+                    newOrigin.x = squareDimension * floor((pannedView.frame.origin.x/squareDimension)+roundValue);
+                    newOrigin.y = squareDimension * floor((pannedView.frame.origin.y/squareDimension)+roundValue);
                     
                     CGRect newFrame = CGRectMake(newOrigin.x, newOrigin.y, pannedView.frame.size.width, pannedView.frame.size.height);
                     [recognizer.view setFrame:newFrame];
                     
                 }
             }
-            else
+            else                    // piece is being dragged on main view 
             {
                 newOrigin = [self.boardImageView convertPoint:pannedView.frame.origin toView:self.view];
                 CGRect newFrame = CGRectMake(newOrigin.x, newOrigin.y, pannedView.frame.size.width, pannedView.frame.size.height);

@@ -1,9 +1,8 @@
 //
-//  jjkViewController.h
-//  Pentominoes
-//
-//  Created by Joshua Kuiros on 9/10/13.
-//  Copyright (c) 2013 Joshua Kuiros. All rights reserved.
+// Name:    Joshua Kuiros
+// Section: CMPSC 475
+// Program: Assignment 3
+// Date: September 19, 2013
 //
 
 #import <UIKit/UIKit.h>
