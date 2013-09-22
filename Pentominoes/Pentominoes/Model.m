@@ -26,30 +26,14 @@
     return self;
 }
 
--(void)initializePuzzlePieces
+-(NSArray*)initializePuzzlePieces
 {
     NSArray *initialPuzzlePieceArray = [NSArray arrayWithObjects:@"tileF.png",@"tileI.png",@"tileL.png",@"tileN.png",@"tileP.png",@"tileT.png",@"tileU.png",@"tileV.png",@"tileW.png",@"tileX.png",@"tileY.png",@"tileZ.png", nil];
     
-    
-    NSRange keyRange;                                   // used to retrieve the specific tile's key
-    keyRange.length = 1;
-    keyRange.location = 4;
-    
-    for(NSString *path in initialPuzzlePieceArray)
-    {
-        
-        UIImage *image = [UIImage imageNamed:path];
-        NSMutableDictionary *propertiesDictionary = [NSMutableDictionary dictionary];
-        
-        UIImageView *temporaryPuzzleImageView = [[UIImageView alloc] initWithImage:image];
-        temporaryPuzzleImageView.frame = CGRectMake(0,0, image.size.width/2, image.size.height/2);
-        
-        [propertiesDictionary setObject:temporaryPuzzleImageView forKey:@"PieceImage" ];
-        [_puzzlePieceDictionary setObject:propertiesDictionary forKey:[path substringWithRange:keyRange]];
-    }
+    return initialPuzzlePieceArray;
 }
 
--(NSMutableDictionary*)getPuzzlePieceDictionary
+-(NSMutableDictionary*)puzzleDictionary
 {
     return _puzzlePieceDictionary;
 }
@@ -61,34 +45,23 @@
     _solutionsArray = [NSArray arrayWithContentsOfFile:solutionFile];
 }
 
--(NSMutableArray*)getSolutions
+-(NSMutableArray*)solutions
 {
     return _solutionsArray;
 }
 
--(UIImageView*)getPuzzlePieceImageView:(NSString*)view withKey:(id)key
+-(UIImageView*)puzzlePieceImageView:(NSString*)view withKey:(id)key
 {
     UIImageView *currentImageView = [[_puzzlePieceDictionary objectForKey:key] objectForKey:view];
     return currentImageView;
 }
 
--(NSInteger)getXCoordinate:(NSDictionary*)dictionary
-{
-    NSInteger xVal = [[dictionary objectForKey:@"x"] integerValue];
-    return xVal;
-}
-
--(NSInteger)getYCoordinate:(NSDictionary*)dictionary
-{
-    NSInteger yVal = [[dictionary objectForKey:@"y"] integerValue];
-    return yVal;
-}
-
--(NSString*)getBoardImage:(NSInteger)tag
+-(UIImage*)boardImage:(NSInteger)tag
 {
     NSString* boardImage = [NSString stringWithFormat:@"Board%d.png",  tag];
+    UIImage *newImage = [UIImage imageNamed:boardImage];
     
-    return boardImage;
+    return newImage;
 }
 
 @end

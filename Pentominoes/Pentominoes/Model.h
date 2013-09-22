@@ -9,17 +9,16 @@
 
 @interface Model : NSObject
 
--(NSMutableDictionary*)getPuzzlePieceDictionary;
+-(NSMutableDictionary*)puzzleDictionary;
 
--(void)initializePuzzlePieces;
+-(NSArray*)initializePuzzlePieces;
 -(void)initializeSolutions;
 
--(NSMutableArray*)getSolutions;
--(UIImageView*)getPuzzlePieceImageView:(NSString*)view withKey:(id)key;
+-(NSMutableArray*)solutions;
+-(UIImageView*)puzzlePieceImageView:(NSString*)view withKey:(id)key;
 
--(NSInteger)getXCoordinate:(NSDictionary*)dictionary;
--(NSInteger)getYCoordinate:(NSDictionary*)dictionary;
+-(UIImage*)boardImage:(NSInteger)tag;
 
--(NSString*)getBoardImage:(NSInteger)tag;
+
 
 @end
