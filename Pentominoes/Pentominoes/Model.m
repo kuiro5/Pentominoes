@@ -8,8 +8,8 @@
 #import "Model.h"
 
 @interface Model ()
-@property(nonatomic, strong)NSMutableDictionary *puzzlePieceDictionary;
-@property(nonatomic, strong)NSMutableArray *solutionsArray;
+@property(nonatomic, retain)NSMutableDictionary *puzzlePieceDictionary;
+@property(nonatomic, retain)NSMutableArray *solutionsArray;
 
 @end
 
@@ -21,9 +21,17 @@
     self = [super init];
     if (self)
     {
-        _puzzlePieceDictionary = [NSMutableDictionary dictionary];
+        _puzzlePieceDictionary = [[NSMutableDictionary alloc] initWithCapacity:12];
+        //_solutionsArray = [[NSMutableArray alloc] init];
     }
     return self;
+}
+
+-(void)dealloc
+{
+    [_puzzlePieceDictionary release];
+    [_solutionsArray release];
+    [super dealloc];
 }
 
 -(NSArray*)initializePuzzlePieces
@@ -42,7 +50,7 @@
 {
     NSBundle *bundle = [NSBundle mainBundle];
     NSString *solutionFile = [bundle pathForResource:@"Solutions" ofType:@".plist"];
-    _solutionsArray = [NSArray arrayWithContentsOfFile:solutionFile];
+    _solutionsArray = [[NSMutableArray alloc] initWithContentsOfFile:solutionFile];
 }
 
 -(NSMutableArray*)solutions

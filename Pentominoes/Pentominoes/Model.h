@@ -15,8 +15,8 @@
 -(void)initializeSolutions;
 
 -(NSMutableArray*)solutions;
--(UIImageView*)puzzlePieceImageView:(NSString*)view withKey:(id)key;
 
+-(UIImageView*)puzzlePieceImageView:(NSString*)view withKey:(id)key;
 -(UIImage*)boardImage:(NSInteger)tag;
 
 

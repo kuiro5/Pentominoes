@@ -9,6 +9,7 @@
 @interface jjkInfoViewController ()
 
 - (IBAction)dismissPressed:(id)sender;
+- (IBAction)themeButtonPressed:(id)sender;
 
 @end
 
@@ -26,7 +27,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	// Do any additional setup after loading the view
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,5 +41,13 @@
 - (IBAction)dismissPressed:(id)sender
 {
     [self.delegate dismissMe];
+}
+
+- (IBAction)themeButtonPressed:(id)sender
+{
+    NSInteger tag = [sender tag];
+    
+    
+    [self.delegate changeTheme:tag];
 }
 @end

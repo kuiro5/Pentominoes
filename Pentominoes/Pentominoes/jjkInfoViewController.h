@@ -10,9 +10,10 @@
 @protocol InfoDelegate <NSObject>
 
 -(void)dismissMe;
+-(void)changeTheme:(NSInteger)tag;
 
 @end
 
 @interface jjkInfoViewController : UIViewController
-@property (nonatomic,weak) id<InfoDelegate> delegate;
+@property (strong,nonatomic) id<InfoDelegate> delegate;
 @end

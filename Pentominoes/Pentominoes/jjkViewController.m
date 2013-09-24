@@ -18,19 +18,22 @@
 #define startingXRatio 3
 
 @interface jjkViewController () <InfoDelegate>
+
 - (IBAction)solveButtonPressed:(id)sender;
 - (IBAction)resetButtonPressed:(id)sender;
+-(IBAction)unwindSegue:(UIStoryboardSegue*)segue;
 
-@property (weak, nonatomic) IBOutlet UIButton *resetButton;
-@property (weak, nonatomic) IBOutlet UIImageView *boardImageView;
-//@property (weak, nonatomic) IBOutlet UIImageView *temporaryImageView;
+@property (strong, nonatomic) IBOutlet UIButton *solveButton;
+@property (strong, nonatomic) IBOutlet UIButton *resetButton;
+@property (strong, nonatomic) IBOutlet UIImageView *boardImageView;
 
 @property NSInteger currentBoardSelected;
-@property (nonatomic,strong) Model *model;
+@property (strong,nonatomic) Model *model;
 
--(IBAction)unwindSegue:(UIStoryboardSegue*)segue;
 @end
 
+
+BOOL rotated = NO;
 
 @implementation jjkViewController
 
@@ -42,14 +45,55 @@
     return self;
 }
 
--(void)dismissMe {
+-(void)dealloc
+{
+    [_model release];
+    [super dealloc];
+}
+
+-(void)dismissMe
+{
     [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+-(void)changeTheme:(NSInteger)tag
+{
+    NSString *resetButtonImage = @"";
+    NSString *solveButtonImage = @"";
+    UIColor *backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
+    
+    switch(tag)
+    {
+        case 0:
+            resetButtonImage = @"resetbutton.png";
+            solveButtonImage = @"solvebutton.png";
+            backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
+            break;
+        case 1:
+            resetButtonImage = @"jungleresetbutton.png";
+            solveButtonImage = @"junglesolvebutton.png";
+            backgroundColor = [UIColor greenColor];
+            break;
+        case 2:
+            resetButtonImage = @"westernresetbutton.png";
+            solveButtonImage = @"westernsolvebutton.png";
+            backgroundColor = [UIColor redColor];
+            break;
+    }
+    
+    
+    
+    [self.resetButton setImage:[UIImage imageNamed:resetButtonImage] forState:UIControlStateNormal];
+    [self.solveButton setImage:[UIImage imageNamed:solveButtonImage] forState: UIControlStateNormal];
+    [self.view setBackgroundColor:backgroundColor];
 }
 
 -(void)createPuzzlePieces;
 {
-    NSArray *puzzlePieces = [self.model initializePuzzlePieces];
+    NSArray *puzzlePieces = /*[[NSArray alloc] initWithArray:*/[self.model initializePuzzlePieces];//];
     NSMutableDictionary *pieceDictionary = [self.model puzzleDictionary];
+    
+    
     
     NSRange keyRange;                                   // used to retrieve the specific tile's key
     keyRange.length = 1;
@@ -59,21 +103,31 @@
     {
         
         UIImage *image = [UIImage imageNamed:path];
-        NSMutableDictionary *propertiesDictionary = [NSMutableDictionary dictionary];
+        NSMutableDictionary *propertiesDictionary = [[NSMutableDictionary alloc] initWithCapacity:1];
         
         UIImageView *temporaryPuzzleImageView = [[UIImageView alloc] initWithImage:image];
         temporaryPuzzleImageView.frame = CGRectMake(0,0, image.size.width/2, image.size.height/2);
         
         [propertiesDictionary setObject:temporaryPuzzleImageView forKey:@"PieceImage" ];
         [pieceDictionary setObject:propertiesDictionary forKey:[path substringWithRange:keyRange]];
+        
+        //[image release];
+        [temporaryPuzzleImageView release];
+        [propertiesDictionary release];
+        
     }
+    
+    
+    
+    //[puzzlePieces release];
+    //[propertiesDictionary release];
 }
 
 -(void)displayPuzzlePieces
 {
     NSLog(@"display called");
     
-    UIImageView *temporaryImageView;
+    
     CGPoint startingPoint = self.boardImageView.frame.origin;               // find boards origins
     startingPoint.y += self.boardImageView.frame.size.height + startingYOffset;
     startingPoint.x = (self.boardImageView.frame.origin.x)/startingXRatio;               // 30% off the edge of the screen
@@ -89,7 +143,7 @@
     
     for(id key in temporaryDictionary)
     {
-        temporaryImageView = [[temporaryDictionary objectForKey:key] objectForKey:@"PieceImage"];
+        UIImageView *temporaryImageView = [[temporaryDictionary objectForKey:key] objectForKey:@"PieceImage"];
         
         if(currentPoint.x + temporaryImageView.image.size.width/2 >= screenWidth - screenBuffer)        // line break
         {
@@ -125,6 +179,12 @@
         [temporaryImageView addGestureRecognizer:panGesture];
         
         [self.view addSubview:temporaryImageView];
+        
+        [panGesture release];
+        [singleTap release];
+        [doubleTap release];
+        //[temporaryImageView release];
+        //[temporaryImageView retain];
     }
 
 }
@@ -171,8 +231,8 @@
 
 - (IBAction)solveButtonPressed:(id)sender
 {
-    NSArray *solutionsArray = [self.model solutions];
-    NSDictionary *boardDictionary;
+    NSMutableArray *solutionsArray = [self.model solutions];
+    
     
     NSMutableDictionary *temporaryDictionary = [self.model puzzleDictionary];
     
@@ -192,7 +252,7 @@
         return;
     }
     
-    boardDictionary = solutionsArray[self.currentBoardSelected - 1];
+    NSDictionary *boardDictionary = solutionsArray[self.currentBoardSelected - 1];
     
     for(id key in temporaryDictionary)
     {
@@ -226,6 +286,8 @@
     
     }
     
+    //[boardDictionary release];
+
 
     
 }
@@ -292,6 +354,11 @@
             
             
             [self.view addSubview:temporaryImageView];
+            
+            [panGesture release];
+            [singleTap release];
+            [doubleTap release];
+            
         }
     }
 }
@@ -315,15 +382,26 @@
                 currentImageView.transform = CGAffineTransformIdentity;
             }];
         }
-        
             
     
     }
-    [UIView animateWithDuration:1 animations:^{
+    if(rotated)
+    {
+        [UIView animateWithDuration:1 animations:^{
         [self rotateDisplayPieces];
     
         }];
-         
+    }
+    else
+    {
+        [UIView animateWithDuration:1 animations:^{
+            [self displayPuzzlePieces];
+            
+        }];
+    }
+    
+    rotated = NO;
+    
     
 }
 
@@ -333,6 +411,8 @@
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [self resetButtonPressed:self];
+    
+    rotated = YES;
     
     self.resetButton.enabled = NO;
 }
