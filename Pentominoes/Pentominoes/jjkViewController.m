@@ -17,6 +17,7 @@
 #define startingYOffset 55
 #define startingXRatio 3
 
+
 @interface jjkViewController () <InfoDelegate>
 
 - (IBAction)solveButtonPressed:(id)sender;
@@ -67,6 +68,7 @@ BOOL rotated = NO;
         case 0:
             resetButtonImage = @"resetbutton.png";
             solveButtonImage = @"solvebutton.png";
+            
             backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
             break;
         case 1:
@@ -233,7 +235,6 @@ BOOL rotated = NO;
 {
     NSMutableArray *solutionsArray = [self.model solutions];
     
-    
     NSMutableDictionary *temporaryDictionary = [self.model puzzleDictionary];
     
     
@@ -270,6 +271,8 @@ BOOL rotated = NO;
         NSInteger rotations = [[pieceDictionary objectForKey:@"rotations"] integerValue];
         NSInteger flips = [[pieceDictionary objectForKey:@"flips"] integerValue];
         
+        currentImageView.transform = CGAffineTransformIdentity;
+        
         
         [UIView animateWithDuration:1 animations:^{
         currentImageView.transform = CGAffineTransformRotate(currentImageView.transform, rotations * M_PI/2);
@@ -278,10 +281,12 @@ BOOL rotated = NO;
         {
             currentImageView.transform = CGAffineTransformScale(currentImageView.transform, -1, 1);
         }
+            
+            
         
-        currentImageView.frame = CGRectMake(x, y, currentImageView.frame.size.width, currentImageView.frame.size.height);
+            currentImageView.frame = CGRectMake(x, y, currentImageView.frame.size.width, currentImageView.frame.size.height);
         
-        [self.view addSubview:currentImageView];
+            [self.view addSubview:currentImageView];
         }];
     
     }
@@ -410,9 +415,10 @@ BOOL rotated = NO;
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
+    rotated = YES;
+    
     [self resetButtonPressed:self];
     
-    rotated = YES;
     
     self.resetButton.enabled = NO;
 }
