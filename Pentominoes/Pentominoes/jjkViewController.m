@@ -1,8 +1,8 @@
 //
 // Name:    Joshua Kuiros
 // Section: CMPSC 475
-// Program: Assignment 2
-// Date: September 13, 2013
+// Program: Assignment 4
+// Date: September 26, 2013
 //
 
 #import "jjkViewController.h"
@@ -49,6 +49,9 @@ BOOL rotated = NO;
 -(void)dealloc
 {
     [_model release];
+    [_solveButton release];
+    [_resetButton release];
+    [_boardImageView release];
     [super dealloc];
 }
 
@@ -79,7 +82,7 @@ BOOL rotated = NO;
         case 2:
             resetButtonImage = @"westernresetbutton.png";
             solveButtonImage = @"westernsolvebutton.png";
-            backgroundColor = [UIColor redColor];
+            backgroundColor = [UIColor blueColor];
             break;
     }
     
@@ -90,9 +93,16 @@ BOOL rotated = NO;
     [self.view setBackgroundColor:backgroundColor];
 }
 
+-(UIColor*)currentTheme
+{
+    UIColor* tempColor = self.view.backgroundColor;
+
+    return tempColor;
+}
+
 -(void)createPuzzlePieces;
 {
-    NSArray *puzzlePieces = /*[[NSArray alloc] initWithArray:*/[self.model initializePuzzlePieces];//];
+    NSArray *puzzlePieces = [self.model initializePuzzlePieces];
     NSMutableDictionary *pieceDictionary = [self.model puzzleDictionary];
     
     
@@ -113,22 +123,14 @@ BOOL rotated = NO;
         [propertiesDictionary setObject:temporaryPuzzleImageView forKey:@"PieceImage" ];
         [pieceDictionary setObject:propertiesDictionary forKey:[path substringWithRange:keyRange]];
         
-        //[image release];
         [temporaryPuzzleImageView release];
         [propertiesDictionary release];
         
     }
-    
-    
-    
-    //[puzzlePieces release];
-    //[propertiesDictionary release];
 }
 
 -(void)displayPuzzlePieces
 {
-    NSLog(@"display called");
-    
     
     CGPoint startingPoint = self.boardImageView.frame.origin;               // find boards origins
     startingPoint.y += self.boardImageView.frame.size.height + startingYOffset;
@@ -185,8 +187,6 @@ BOOL rotated = NO;
         [panGesture release];
         [singleTap release];
         [doubleTap release];
-        //[temporaryImageView release];
-        //[temporaryImageView retain];
     }
 
 }
@@ -200,8 +200,6 @@ BOOL rotated = NO;
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    
-    //[self.model initializePuzzlePieces];
     [self createPuzzlePieces];
     [self.model initializeSolutions];
     
@@ -288,13 +286,7 @@ BOOL rotated = NO;
         
             [self.view addSubview:currentImageView];
         }];
-    
     }
-    
-    //[boardDictionary release];
-
-
-    
 }
 
 -(void)rotateDisplayPieces
@@ -379,17 +371,21 @@ BOOL rotated = NO;
     {
         UIImageView *currentImageView = [[temporaryDictionary objectForKey:key] objectForKey:@"PieceImage"];
       
-        if([currentImageView.superview isEqual:super.view])
+       if([currentImageView.superview isEqual:super.view] && rotated)
         {
-            NSLog(@"main view");
             
             [UIView animateWithDuration:1 animations:^{
                 currentImageView.transform = CGAffineTransformIdentity;
             }];
         }
-            
-    
+       else if(!rotated)
+       {
+           [UIView animateWithDuration:1 animations:^{
+               currentImageView.transform = CGAffineTransformIdentity;
+           }];
+       }
     }
+    
     if(rotated)
     {
         [UIView animateWithDuration:1 animations:^{
@@ -407,10 +403,7 @@ BOOL rotated = NO;
     
     rotated = NO;
     
-    
 }
-
-
 
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -434,10 +427,8 @@ BOOL rotated = NO;
     NSInteger boardXMax;
     NSInteger boardYMax;
     
-    if(self.currentBoardSelected != 0)
-    {
-        self.resetButton.enabled = YES;
-    }
+    self.resetButton.enabled = YES;
+    
     
     
     switch (recognizer.state) {
@@ -510,12 +501,10 @@ BOOL rotated = NO;
     }
 }
 
-- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
+- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer
+{
     
-        if(self.currentBoardSelected != 0)
-        {
-            self.resetButton.enabled = YES;
-        }
+        self.resetButton.enabled = YES;
     
         UIView *tappedView = recognizer.view;
     
@@ -524,12 +513,11 @@ BOOL rotated = NO;
         }];
 }
 
-- (void)handleDoubleTap:(UITapGestureRecognizer *)recognizer {
+- (void)handleDoubleTap:(UITapGestureRecognizer *)recognizer
+{
     
-    if(self.currentBoardSelected != 0)
-    {
-        self.resetButton.enabled = YES;
-    }
+    self.resetButton.enabled = YES;
+    
     UIView *doubleTappedView = recognizer.view;
     
     [UIView animateWithDuration:.5 animations:^{

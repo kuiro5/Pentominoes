@@ -1,8 +1,8 @@
 //
 // Name:    Joshua Kuiros
 // Section: CMPSC 475
-// Program: Assignment 3
-// Date: September 19, 2013
+// Program: Assignment 4
+// Date: September 26, 2013
 //
 
 #import "Model.h"
@@ -17,12 +17,12 @@
 
 @implementation Model
 
--(id)init {
+-(id)init
+{
     self = [super init];
     if (self)
     {
         _puzzlePieceDictionary = [[NSMutableDictionary alloc] initWithCapacity:12];
-        //_solutionsArray = [[NSMutableArray alloc] init];
     }
     return self;
 }

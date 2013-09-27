@@ -1,8 +1,8 @@
 //
 // Name:    Joshua Kuiros
 // Section: CMPSC 475
-// Program: Assignment 3
-// Date: September 19, 2013
+// Program: Assignment 4
+// Date: September 26, 2013
 //
 #import "jjkInfoViewController.h"
 
@@ -14,12 +14,14 @@
 @property (retain, nonatomic) IBOutlet UIView *themeView;
 - (IBAction)dismissPressed:(id)sender;
 - (IBAction)themeButtonPressed:(id)sender;
+@property (retain, nonatomic) IBOutlet UIButton *greenButton;
+@property (retain, nonatomic) IBOutlet UIButton *darkButton;
 @property (retain, nonatomic) IBOutlet UIImageView *checkButtonImage;
 @property (retain, nonatomic) IBOutlet UIButton *classicButton;
+@property CGPoint buttonOrigin;
+@property (retain, nonatomic) UIColor *themeDisplayed;
 
 @end
-
-CGPoint buttonOrigin;
 
 @implementation jjkInfoViewController
 
@@ -34,13 +36,29 @@ CGPoint buttonOrigin;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view
     
-    self.checkButtonImage.frame = CGRectMake(buttonOrigin.x - checkMarkXOffset, buttonOrigin.y + checkMarkYOffset, self.checkButtonImage.frame.size.width, self.checkButtonImage.frame.size.height);
+	self.themeDisplayed = [self.delegate currentTheme];
+    
+    if(self.themeDisplayed == [UIColor scrollViewTexturedBackgroundColor])
+    {
+        self.buttonOrigin = self.classicButton.frame.origin;
+    }
+    else if (self.themeDisplayed == [UIColor greenColor])
+    {
+        self.buttonOrigin = self.greenButton.frame.origin;
+    }
+    else if(self.themeDisplayed == [UIColor blueColor])
+    {
+        self.buttonOrigin = self.darkButton.frame.origin;
+    }
+    
+    self.checkButtonImage.frame = CGRectMake(self.buttonOrigin.x - checkMarkXOffset, self.buttonOrigin.y + checkMarkYOffset, self.checkButtonImage.frame.size.width, self.checkButtonImage.frame.size.height);
     
     [self.themeView addSubview:self.checkButtonImage];
-
     
+}
+-(void)viewDidAppear:(BOOL)animated
+{
     
 }
 
@@ -57,21 +75,25 @@ CGPoint buttonOrigin;
 
 - (IBAction)themeButtonPressed:(id)sender
 {
-    UIButton *buttonSelected = sender;
-    buttonOrigin = buttonSelected.frame.origin;
+    NSInteger tag = [sender tag];
     
-    self.checkButtonImage.frame = CGRectMake(buttonOrigin.x - checkMarkXOffset, buttonOrigin.y + checkMarkYOffset, self.checkButtonImage.frame.size.width, self.checkButtonImage.frame.size.height);
+    UIButton *buttonSelected = sender;
+    self.buttonOrigin = buttonSelected.frame.origin;
+    
+    self.checkButtonImage.frame = CGRectMake(self.buttonOrigin.x - checkMarkXOffset, self.buttonOrigin.y + checkMarkYOffset, self.checkButtonImage.frame.size.width, self.checkButtonImage.frame.size.height);
     
     [self.themeView addSubview:self.checkButtonImage];
-    
-    
-    NSInteger tag = [sender tag];    
+     
     [self.delegate changeTheme:tag];
 }
 - (void)dealloc {
     [_checkButtonImage release];
     [_themeView release];
     [_classicButton release];
+    [_greenButton release];
+    [_darkButton release];
+    [_themeDisplayed release];
+    [_delegate release];
     [super dealloc];
 }
 @end

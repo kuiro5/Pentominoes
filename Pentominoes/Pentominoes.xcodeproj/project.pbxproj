@@ -174,11 +174,11 @@
 				7BC16F7817EBA65500CCB48B /* jjkInfoViewController.h */,
 				7BC16F7917EBA65500CCB48B /* jjkInfoViewController.m */,
 				7B41792017E7C7C20065DE63 /* Model.m */,
+				7BDA7AA017DFB8880006198C /* jjkViewController.m */,
 				7BDA7A9317DFB8880006198C /* jjkAppDelegate.h */,
 				7BDA7A9417DFB8880006198C /* jjkAppDelegate.m */,
 				7BDA7A9C17DFB8880006198C /* MainStoryboard.storyboard */,
 				7BDA7A9F17DFB8880006198C /* jjkViewController.h */,
-				7BDA7AA017DFB8880006198C /* jjkViewController.m */,
 				7BDA7A8B17DFB8880006198C /* Supporting Files */,
 			);
 			path = Pentominoes;
