@@ -343,7 +343,6 @@
         <class className="jjkViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/jjkViewController.h"/>
             <relationships>
-                <relationship kind="action" name="boardButtonPressed:"/>
                 <relationship kind="action" name="resetButtonPressed:"/>
                 <relationship kind="action" name="solveButtonPressed:"/>
                 <relationship kind="action" name="unwindSegue:" candidateClass="UIStoryboardSegue"/>
